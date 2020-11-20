@@ -14,6 +14,9 @@ class PublishArticleViewController: UIViewController {
     let db = Firestore.firestore()
     var ref : DocumentReference? = nil
     
+    let date = Date()
+    var today: String!
+
     let picker = UIPickerView()
     let myPickerData = ["SchoolLife","Beauty","Others"]
     
@@ -76,7 +79,8 @@ class PublishArticleViewController: UIViewController {
                                                         "id": document.documentID,
                                                         "category": (categoryTextField.text ?? "0") as String,
                                                         "title": (titleTextField.text ?? "0") as String,
-                                                        "created_time": NSDate().timeIntervalSince1970]
+                                                        "created_time": NSDate().timeIntervalSince1970
+        ]
         ) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -85,7 +89,20 @@ class PublishArticleViewController: UIViewController {
             }
         }
     }
+    func getDate() {
+        let timeStamp = date.timeIntervalSince1970
+        let timeInterval = TimeInterval(timeStamp)
+        
+        let date = Date(timeIntervalSince1970: timeInterval)
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        
+        today = dateFormatter.string(from: date)
+    }
     
+
 }
 
 extension PublishArticleViewController :UIPickerViewDelegate,UIPickerViewDataSource{
