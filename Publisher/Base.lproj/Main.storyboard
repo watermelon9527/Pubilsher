@@ -87,6 +87,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="categoryLabel" destination="hLi-BR-6nj" id="qAx-f5-oxm"/>
+                                            <outlet property="contentLabel" destination="raB-0R-PyO" id="KOj-If-bY5"/>
                                             <outlet property="nameLabel" destination="Mmv-o0-wV8" id="Vp2-Yx-ru4"/>
                                             <outlet property="timeLabel" destination="KH0-y2-lop" id="v5W-0B-T3b"/>
                                             <outlet property="titleLabel" destination="Eod-y2-DrC" id="38g-uy-43X"/>
@@ -152,7 +153,6 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="inv-kb-nZk">
                                         <rect key="frame" x="8" y="92" width="358" height="393"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

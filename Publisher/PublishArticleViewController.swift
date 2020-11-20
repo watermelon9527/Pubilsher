@@ -8,8 +8,9 @@
 import UIKit
 import FirebaseCore
 import FirebaseFirestore
-import FirebaseFirestoreSwift
+
 class PublishArticleViewController: UIViewController {
+    
     let db = Firestore.firestore()
     var ref : DocumentReference? = nil
     
@@ -36,15 +37,17 @@ class PublishArticleViewController: UIViewController {
             titleTextField.layer.borderWidth = 1
         }
     }
-    
+    func navigationUI(){
+        navigationController?.navigationBar.barTintColor = UIColor.systemIndigo
+        navigationController?.navigationBar.tintColor = .white
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.barTintColor = UIColor.systemIndigo
-        navigationController?.navigationBar.tintColor = UIColor.white
-    
         picker.delegate = self
         categoryTextField.inputView = picker
+        
+        navigationUI()
         
     }
     @IBOutlet weak var sendButton: UIButton!{
@@ -54,50 +57,27 @@ class PublishArticleViewController: UIViewController {
         }
     }
     @IBAction func sendButton(_ sender: UIButton) {
-//        if categoryTextField.text != "" && inputTextView.text != "" && titleTextField.text != "" {
-//            addData()
-            self.navigationController?.popViewController(animated: true)
-            
-//        }
+        addArticle()
         
+        self.navigationController?.popViewController(animated: true)
     }
-//    func addData(){
-//
-//        let articles = Firestore.firestore().collection("articles")
-//
-//        let document = articles.document()
-//
-//        let data: [String:Any] = [
-//
-//            "author": [
-//                "email": "wayne@school.appworks.tw",
-//                "id": "waynechen323",
-//                "name": "AKA小安老師"
-//            ],
-//            "title":(titleTextField.text ?? "0") as String,
-//            "content":(inputTextView.text ?? "0") as String,
-//            "createdTime": NSDate().timeIntervalSince1970,
-//            "id": document.documentID,
-//            "category": (categoryTextField.text ?? "0") as String
-//        ]
-//        document.setData(data)
-//    }
-    func addArticle(today: String) {
+
+    func addArticle() {
         
         let document = db.collection("articles").document()
         
         ref = db.collection("articles").addDocument(data: [
-            "author": [
-                "email": "wayne@school.appworks.tw",
-                "id": "waynechen323",
-                "name": "AKA小安老師"
-            ],
-            "content": (inputTextView.text ?? "0") as String,
-            "id": document.documentID,
-            "category": (categoryTextField.text ?? "0") as String,
-            "title": (titleTextField.text ?? "0") as String,
-            "created_time": NSDate().timeIntervalSince1970]
-            ) { err in
+                                                        "author": [
+                                                            "email": "wayne@school.appworks.tw",
+                                                            "id": "waynechen323",
+                                                            "name": "AKA小安老師"
+                                                        ],
+                                                        "content": (inputTextView.text ?? "0") as String,
+                                                        "id": document.documentID,
+                                                        "category": (categoryTextField.text ?? "0") as String,
+                                                        "title": (titleTextField.text ?? "0") as String,
+                                                        "created_time": NSDate().timeIntervalSince1970]
+        ) { err in
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
@@ -105,7 +85,6 @@ class PublishArticleViewController: UIViewController {
             }
         }
     }
-    
     
 }
 
