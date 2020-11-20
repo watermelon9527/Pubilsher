@@ -13,7 +13,7 @@ struct Publisher{
     var articleTitle : String?
     var authorName:String?
     var category: String?
-    var createdTime : Date?
+    var createdTime : String?
     var articleContent: String?
 
 }
@@ -45,12 +45,14 @@ class HomeViewController: UIViewController {
 //                print(name ?? "0")
                 if let Title = document.data()["title"] as? String,
                    let Category = document.data()["category"] as? String,
-                   let Content = document.data()["content"] as? String
+                   let Content = document.data()["content"] as? String,
+                   let Time = document.data()["created_time"] as? String
                 {
                     var data = Publisher()
                     data.articleTitle = Title
                     data.category = Category
                     data.articleContent = Content
+                    data.createdTime = Time
                     self.dataList.append(data)
                 }
 //                if let Time = document.data()["created_time"] as? Date{
@@ -98,7 +100,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
         let data = dataList[indexPath.row]
         cell.titleLabel.text = data.articleTitle
- //       cell.timeLabel.text = (data.createdTime) as! String
+        cell.timeLabel.text = data.createdTime
         cell.categoryLabel.text = data.category
         cell.contentLabel.text = data.articleContent
         

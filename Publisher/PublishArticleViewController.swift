@@ -60,12 +60,12 @@ class PublishArticleViewController: UIViewController {
         }
     }
     @IBAction func sendButton(_ sender: UIButton) {
-        addArticle()
+        addArticle(today: today)
         
         self.navigationController?.popViewController(animated: true)
     }
 
-    func addArticle() {
+    func addArticle(today: String) {
         
         let document = db.collection("articles").document()
         
@@ -79,7 +79,7 @@ class PublishArticleViewController: UIViewController {
                                                         "id": document.documentID,
                                                         "category": (categoryTextField.text ?? "0") as String,
                                                         "title": (titleTextField.text ?? "0") as String,
-                                                        "created_time": NSDate().timeIntervalSince1970
+                                                        "created_time": today
         ]
         ) { err in
             if let err = err {
