@@ -43,27 +43,22 @@ class HomeViewController: UIViewController {
 //                 print(document.data())
 //                let name = document.data()["author"]
 //                print(name ?? "0")
-                if let Title = document.data()["title"] as? String
+                if let Title = document.data()["title"] as? String,
+                   let Category = document.data()["category"] as? String,
+                   let Content = document.data()["content"] as? String
                 {
                     var data = Publisher()
                     data.articleTitle = Title
+                    data.category = Category
+                    data.articleContent = Content
                     self.dataList.append(data)
                 }
-                if let Time = document.data()["created_time"] as? Date{
-                    var data = Publisher()
-                    data.createdTime = Time
-                   // self.dataList.append(data)
-                }
-                if let Category = document.data()["category"] as? String{
-                    var data = Publisher()
-                    data.category = Category
-                 //   self.dataList.append(data)
-                }
-                if let Content = document.data()["content"] as? String{
-                    var data = Publisher()
-                    data.articleContent = Content
-                  //  self.dataList.append(data)
-              }
+//                if let Time = document.data()["created_time"] as? Date{
+//                    var data = Publisher()
+//                    data.createdTime = Time
+//                    self.dataList.append(data)
+//                }
+
               }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -85,11 +80,7 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         
         navigationUI()
-        
         getDocuments()
-        
-        
-        
         
     }
     
